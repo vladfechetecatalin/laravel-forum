@@ -6,9 +6,9 @@ use Atrakeur\Forum\Repositories\MessagesRepository;
 
 class AbstractViewForumController extends AbstractForumController {
 
-	private $categories;
-	private $topics;
-	private $messages;
+	protected $categories;
+	protected $topics;
+	protected $messages;
 
 	public function __construct(CategoriesRepository $categories, TopicsRepository $topics, MessagesRepository $messages)
 	{
