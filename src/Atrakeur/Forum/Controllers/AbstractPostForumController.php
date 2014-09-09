@@ -14,9 +14,9 @@ abstract class AbstractPostForumController extends AbstractForumController {
 			'data' => 'required|min:5',
 	);
 
-	private $categories;
-	private $topics;
-	private $messages;
+	protected $categories;
+	protected $topics;
+	protected $messages;
 
 	public function __construct(CategoriesRepository $categories, TopicsRepository $topics, MessagesRepository $messages)
 	{
