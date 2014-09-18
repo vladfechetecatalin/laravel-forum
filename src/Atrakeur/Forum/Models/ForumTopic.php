@@ -30,7 +30,7 @@ class ForumTopic extends AbstractForumBaseModel
 
 	public function getReplyCountAttribute()
 	{
-		return $this->messages()->count();
+		return $this->messages()->where('status', 'approved')->count();
 	}
 
 	public function getUrlAttribute()
