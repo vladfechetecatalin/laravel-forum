@@ -42,6 +42,7 @@ abstract class AbstractPostForumController extends AbstractForumController {
 
 	public function postNewTopic($categoryId, $categoryUrl)
 	{
+		$instance = $this->$current_instance();
 		$user = $this->getCurrentUser();
 		if ($user == NULL) 
 		{
@@ -55,7 +56,8 @@ abstract class AbstractPostForumController extends AbstractForumController {
 			$title = \Input::get('title');
 			$data  = \Input::get('data');
 
-			$topic                  = new \stdClass();			
+			$topic                  = new \stdClass();
+			$topic->instance        = $instance
 			$topic->author_id       = $user->id;
 			$topic->parent_category = $category->id;
 			$topic->title           = $title;
@@ -65,6 +67,7 @@ abstract class AbstractPostForumController extends AbstractForumController {
 			$this->fireEvent('forum.saved.topic', array($topic));
 
 			$message               = new \stdClass();
+			$message->instance     = $instance
 			$message->parent_topic = $topic->id;
 			$message->author_id    = $user->id;
 			$message->data         = $data;
@@ -105,6 +108,7 @@ abstract class AbstractPostForumController extends AbstractForumController {
 
 	public function postNewMessage($categoryId, $categoryUrl, $topicId, $topicUrl)
 	{
+		$instance = $this->current_instance();
 		$user = $this->getCurrentUser();
 		if ($user == NULL) 
 		{
@@ -119,6 +123,7 @@ abstract class AbstractPostForumController extends AbstractForumController {
 			$data = \Input::get('data');
 
 			$message               = new \stdClass();
+			$message->instance     = $instance
 			$message->parent_topic = $topic->id;
 			$message->author_id    = $user->id;
 			$message->data         = $data;
