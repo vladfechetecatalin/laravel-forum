@@ -8,13 +8,13 @@ abstract class AbstractBaseRepository  {
 
 	protected function getFirstBy($index, $value, array $with = array())
 	{
-		$model = $this->model->where($index, '=', $value)->with($with)->first();
+		$model = $this->model->where($index, '=', $value)->where('instance', \App::make('current_instance'))->with($with)->first();
 		return $this->model->convertToObject($model);
 	}
 
 	protected function getManyBy($index, $value, array $with = array())
 	{
-		$model = $this->model->where($index, '=', $value)->with($with);
+		$model = $this->model->where($index, '=', $value)->where('instance', \App::make('current_instance'))->with($with);
 
 		if ($this->itemsPerPage != 0)
 		{
