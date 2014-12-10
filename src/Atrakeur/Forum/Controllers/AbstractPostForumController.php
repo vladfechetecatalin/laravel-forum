@@ -67,7 +67,7 @@ abstract class AbstractPostForumController extends AbstractForumController {
 			$this->fireEvent('forum.saved.topic', array($topic));
 
 			$message               = new \stdClass();
-			$message->instance     = $instance
+			$message->instance     = $instance;
 			$message->parent_topic = $topic->id;
 			$message->author_id    = $user->id;
 			$message->data         = $data;
@@ -123,7 +123,7 @@ abstract class AbstractPostForumController extends AbstractForumController {
 			$data = \Input::get('data');
 
 			$message               = new \stdClass();
-			$message->instance     = $instance
+			$message->instance     = $instance;
 			$message->parent_topic = $topic->id;
 			$message->author_id    = $user->id;
 			$message->data         = $data;
