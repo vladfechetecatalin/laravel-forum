@@ -57,7 +57,7 @@ abstract class AbstractPostForumController extends AbstractForumController {
 			$data  = \Input::get('data');
 
 			$topic                  = new \stdClass();
-			$topic->instance        = $instance
+			$topic->instance        = $instance;
 			$topic->author_id       = $user->id;
 			$topic->parent_category = $category->id;
 			$topic->title           = $title;
