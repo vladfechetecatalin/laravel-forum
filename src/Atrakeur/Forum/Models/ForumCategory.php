@@ -20,7 +20,8 @@ class ForumCategory extends AbstractForumBaseModel {
 
 	public function topics()
 	{
-		return $this->hasMany('\Atrakeur\Forum\Models\ForumTopic', 'parent_category');
+		return $this->hasMany('\Atrakeur\Forum\Models\ForumTopic', 'parent_category')
+					->where('instance', \App::make('current_instance'));
 	}
 
 	public function scopeWhereTopLevel($query)

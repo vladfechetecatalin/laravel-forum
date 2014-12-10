@@ -40,7 +40,9 @@ abstract class AbstractBaseRepository  {
 
 	public function getPaginationLinks()
 	{
-		return $this->model->where('status', 'approved')->paginate($this->itemsPerPage)->links();
+		return $this->model->where('status', 'approved')
+						   ->where('instance', \App::make('current_instance'))
+						   ->paginate($this->itemsPerPage)->links();
 	}
 
 	public function create(\stdClass $data)
