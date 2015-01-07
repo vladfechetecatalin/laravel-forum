@@ -39,6 +39,7 @@ class MessagesRepository extends AbstractBaseRepository {
 		$model = $this->model->where('parent_topic', '=', $topicId);
 		$model = $model->orderBy('created_at', 'DESC')->take($count);
 		$model = $model->with($with);
+		$model = $model->where('status', 'approved');
 		return $this->model->convertToObject($model->get());
 	}
 
