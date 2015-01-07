@@ -40,6 +40,7 @@ class MessagesRepository extends AbstractBaseRepository {
 		$model = $model->orderBy('created_at', 'DESC')->take($count);
 		$model = $model->with($with);
 		$model = $model->where('status', 'approved');
+		$model = $model->where('instance', \App::make('current_instance'));
 		return $this->model->convertToObject($model->get());
 	}
 
