@@ -6,7 +6,7 @@ if (!isset($routebase) || !isset($viewController) || !isset($postController)) {
 	/*
 	 *  Defines routes used by Forum controller
 	 */
-	\Route:: get($routebase, $viewController.'@getIndex');
+	\Route::get($routebase, array('as' => 'forum', 'uses' => $viewController.'@getIndex'));
 	\Route:: get($routebase.'{categoryId}-{categoryUrl}', $viewController.'@getCategory');
 	\Route:: get($routebase.'{categoryId}-{categoryUrl}/{topicId}-{topicUrl}', $viewController.'@getTopic');
 
