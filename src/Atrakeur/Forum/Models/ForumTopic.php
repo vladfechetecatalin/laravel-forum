@@ -35,8 +35,8 @@ class ForumTopic extends AbstractForumBaseModel
 
 	public function getUrlAttribute()
 	{
-		$topicTitle = \App::getLocale() == 'en' && $this->category->title_en ? 'title_en' : 'title';
-		$categoryTitle = \App::getLocale() == 'en' && $this->title_en ? 'title_en' : 'title';
+		$topicTitle = \App::getLocale() == 'en' && $this->category->title_en && $this->title_en ? 'title_en' : 'title';
+		$categoryTitle = \App::getLocale() == 'en' && $this->category->title_en && $this->title_en ? 'title_en' : 'title';
 
 		return action(\Config::get('forum::integration.viewcontroller').'@getTopic',
 			array(
@@ -50,8 +50,8 @@ class ForumTopic extends AbstractForumBaseModel
 
 	public function getPostUrlAttribute()
 	{
-		$topicTitle = \App::getLocale() == 'en' && $this->category->title_en ? 'title_en' : 'title';
-		$categoryTitle = \App::getLocale() == 'en' && $this->title_en ? 'title_en' : 'title';
+		$topicTitle = \App::getLocale() == 'en' && $this->category->title_en && $this->title_en ? 'title_en' : 'title';
+		$categoryTitle = \App::getLocale() == 'en' && $this->category->title_en && $this->title_en ? 'title_en' : 'title';
 
 		return action(\Config::get('forum::integration.postcontroller').'@postNewMessage',
 			array(

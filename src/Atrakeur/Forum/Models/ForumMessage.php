@@ -43,8 +43,8 @@ class ForumMessage extends AbstractForumBaseModel {
 		$topic    = $this->topic;
 		$category = $topic->category;
 
-		$topicTitle = \App::getLocale() == 'en' && $category->title_en ? 'title_en' : 'title';
-		$categoryTitle = \App::getLocale() == 'en' && $topic->title_en ? 'title_en' : 'title';
+		$topicTitle = \App::getLocale() == 'en' && $category->title_en && $topic->title_en ? 'title_en' : 'title';
+		$categoryTitle = \App::getLocale() == 'en' && $category->title_en && $topic->title_en ? 'title_en' : 'title';
 
 		return action(\Config::get('forum::integration.postcontroller').'@postEditMessage',
 			array(
