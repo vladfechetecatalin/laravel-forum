@@ -35,24 +35,31 @@ class ForumTopic extends AbstractForumBaseModel
 
 	public function getUrlAttribute()
 	{
+		$topicTitle = \App::getLocale() == 'en' && $this->category->title_en ? 'title_en' : 'title';
+		$categoryTitle = \App::getLocale() == 'en' && $this->title_en ? 'title_en' : 'title';
+
 		return action(\Config::get('forum::integration.viewcontroller').'@getTopic',
 			array(
 				'categoryId'  => $this->category->id,
-				'categoryUrl' => \Str::slug($this->category->title, '_'),
+				'categoryUrl' => \Str::slug($this->category->$categoryTitle, '_'),
 				'topicId'     => $this->id,
-				'topicUrl'    => \Str::slug($this->title, '_'),
+				'topicUrl'    => \Str::slug($this->$topicTitle, '_'),
 			)
 		);
 	}
 
 	public function getPostUrlAttribute()
 	{
+
+		$topicTitle = \App::getLocale() == 'en' && $this->category->title_en ? 'title_en' : 'title';
+		$categoryTitle = \App::getLocale() == 'en' && $this->title_en ? 'title_en' : 'title';
+
 		return action(\Config::get('forum::integration.postcontroller').'@postNewMessage',
 			array(
 				'categoryId'  => $this->category->id,
-				'categoryUrl' => \Str::slug($this->category->title, '_'),
+				'categoryUrl' => \Str::slug($this->category->$categoryTitle, '_'),
 				'topicId'     => $this->id,
-				'topicUrl'    => \Str::slug($this->title, '_'),
+				'topicUrl'    => \Str::slug($this->$topicTitle, '_'),
 			)
 		);
 	}
